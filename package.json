@@ -1,1 +1,37 @@
-{"type": "commonjs"}
+{
+  "name": "orange-finder",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.10.4",
+    "@emotion/styled": "^11.10.4",
+    "@mui/material": "^5.10.7",
+    "axios": "^0.27.2",
+    "get-ip-range": "^4.0.1",
+    "intl": "^1.2.5",
+    "ip": "^1.1.8",
+    "is-port-reachable": "^4.0.0",
+    "next": "12.3.1",
+    "node-onvif": "^0.1.7",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-loader-spinner": "^5.3.4",
+    "react-toastify": "^9.0.8",
+    "styled-components": "^5.3.5",
+    "typeface-montserrat": "^1.1.13",
+    "uuid": "^9.0.0",
+    "vcloud-vms-service": "git+https://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:x-oauth-basic@github.com/vcloudai/vcloud-vms-service.git",
+    "xml2js": "^0.4.23"
+  },
+  "devDependencies": {
+    "babel-plugin-styled-components": "^2.0.7",
+    "eslint": "8.24.0",
+    "eslint-config-next": "12.3.1"
+  }
+}
