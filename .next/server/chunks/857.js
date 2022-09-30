@@ -181,7 +181,7 @@ const addCamera = async camera => {
         type: "error",
         message: error.response.data.message
       });
-      return;
+      return null;
     }
 
     (0,components_common_Toast__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)({

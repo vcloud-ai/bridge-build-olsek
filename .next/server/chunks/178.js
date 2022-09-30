@@ -18,13 +18,14 @@ const checkUrlIsValid = url => new Promise((res, _) => {
   console.log("url to check ===> ", url);
 
   if (url.includes("undefined")) {
+    // res({ message: "Something went wrong during url check" });
     res({
-      message: "Something went wrong during url check"
+      message: "Url is invalid"
     });
     return;
   } // FFMPEG 5
   // const cmd =
-  //   `-rtsp_transport tcp -rtsp_flags listen -v debug -loglevel error -timeout 5000000 -print_format json -show_error ${url}`.split(
+  //   `-rtsp_transport tcp -v debug -loglevel error -timeout 5000000 -print_format json -show_error ${url}`.split(
   //     " "
   //   );
   // FFMPEG 4
