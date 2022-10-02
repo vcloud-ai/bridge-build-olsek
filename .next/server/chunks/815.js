@@ -366,9 +366,6 @@ const scanLocalNetwork = callback => {
       discoveryWaitTimer = setTimeout(() => {
         stopProbe().then(() => {
           const deviceList = devices.map(device => device.getData());
-          console.log({
-            deviceList
-          });
           resolve(deviceList);
         }).catch(error => reject(error));
       }, DISCOVERY_WAIT);
