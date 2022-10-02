@@ -1,8 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="23" height="32" viewBox="0 0 23 32">
-  <g id="Group_1713" data-name="Group 1713" transform="translate(-697 -327.917)">
-    <g id="Group_1712" data-name="Group 1712">
-      <path id="Path_1310" data-name="Path 1310" d="M2.421,0H20.579C21.916,0,23,7.163,23,16s-1.084,16-2.421,16H2.421C1.084,32,0,24.837,0,16S1.084,0,2.421,0Z" transform="translate(697 327.917)" fill="#cbfe00"/>
-    </g>
-    <text id="_" data-name="+" transform="translate(708 351.108)" fill="#172a3b" stroke="rgba(0,0,0,0)" stroke-miterlimit="10" stroke-width="1" font-size="22" font-family="Montserrat-Medium, Montserrat" font-weight="500"><tspan x="-6.402" y="0">+</tspan></text>
-  </g>
-</svg>
