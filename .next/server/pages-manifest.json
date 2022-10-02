@@ -1,8 +1,9 @@
 {
   "/_app": "pages/_app.js",
   "/added_devices": "pages/added_devices.html",
-  "/api/addBulkCameras": "pages/api/addBulkCameras.js",
+  "/_error": "pages/_error.js",
   "/api/addCameraInfo": "pages/api/addCameraInfo.js",
+  "/api/addBulkCameras": "pages/api/addBulkCameras.js",
   "/api/connect": "pages/api/connect.js",
   "/api/deleteAddedCamera": "pages/api/deleteAddedCamera.js",
   "/api/devices": "pages/api/devices.js",
@@ -10,7 +11,6 @@
   "/api/searchCamerasInSubnet": "pages/api/searchCamerasInSubnet.js",
   "/device": "pages/device.html",
   "/": "pages/index.html",
-  "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
   "/404": "pages/404.html"
 }
