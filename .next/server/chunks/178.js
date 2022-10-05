@@ -103,7 +103,7 @@ const addONVIFCamera = async options => {
   let mainStreamUrl = mainStream.url || "",
       subStreamUrl = subStream.url || "";
 
-  if (options.pass) {
+  if (options?.pass) {
     mainStreamUrl = processUrl(mainStreamUrl, options.pass);
     subStreamUrl = processUrl(subStreamUrl, options.pass);
   }
