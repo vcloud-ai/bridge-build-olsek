@@ -86,7 +86,7 @@ async function handler(req, res) {
         port,
         ip,
         login,
-        password
+        password = ""
       } = req.body;
       const credsMatch = /(?<=\/{2})[^]+(?=@)/gi;
       let streamUrl = url;
@@ -116,11 +116,9 @@ async function handler(req, res) {
           pass: unescape(password)
         });
         streamUrl = firstUrl;
-        subStreamUrl = secondUrl;
-
-        if (streamUrl.includes(":undefined")) {
-          streamUrl = streamUrl.replace(":undefined", "");
-        }
+        subStreamUrl = secondUrl; // if (streamUrl.includes(":undefined")) {
+        //   streamUrl = streamUrl.replace(":undefined", "");
+        // }
       }
 
       const cameras = await getAddedCameras();

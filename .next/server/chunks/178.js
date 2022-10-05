@@ -96,6 +96,9 @@ const processUrl = (url, pass) => {
 };
 
 const addONVIFCamera = async options => {
+  console.log({
+    options
+  });
   const dev = new vcloud_vms_service__WEBPACK_IMPORTED_MODULE_0__.ONVIFCamera();
   await dev.init(options);
   const streams = dev.camera.getUdpStreamUrl();

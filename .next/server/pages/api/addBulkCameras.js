@@ -180,6 +180,7 @@ async function checkCamera(camera) {
       port
     };
   } catch (error) {
+    console.log(error);
     return [];
   }
 }
