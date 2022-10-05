@@ -125,7 +125,7 @@ async function checkCamera(camera) {
       port,
       ip,
       login,
-      password
+      password = ""
     } = camera;
     const credsMatch = /(?<=\/{2})[^]+(?=@)/gi;
     let streamUrl = url;
@@ -156,10 +156,6 @@ async function checkCamera(camera) {
       });
       streamUrl = firstUrl;
       subStreamUrl = secondUrl;
-
-      if (streamUrl.includes(":undefined")) {
-        streamUrl = streamUrl.replace(":undefined", "");
-      }
     }
 
     const cameras = await getAddedCameras();
