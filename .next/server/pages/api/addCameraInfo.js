@@ -5,6 +5,20 @@ exports.id = 780;
 exports.ids = [780];
 exports.modules = {
 
+/***/ 7987:
+/***/ ((module) => {
+
+module.exports = require("terminate");
+
+/***/ }),
+
+/***/ 5828:
+/***/ ((module) => {
+
+module.exports = require("uuid");
+
+/***/ }),
+
 /***/ 456:
 /***/ ((module) => {
 
@@ -60,6 +74,8 @@ const {
   getAddedCameras
 } = __webpack_require__(1546);
 
+const streamsHandler = __webpack_require__(7564);
+
 async function handler(req, res) {
   if (req.method === "POST") {
     try {
@@ -74,6 +90,7 @@ async function handler(req, res) {
       } = req.body;
       const credsMatch = /(?<=\/{2})[^]+(?=@)/gi;
       let streamUrl = url;
+      let subStreamUrl = "";
 
       if (streamUrl && !password && credsMatch.test(streamUrl)) {
         const [credentials] = streamUrl.match(credsMatch);
@@ -88,25 +105,22 @@ async function handler(req, res) {
         streamUrl = `${streamUrl[0]}//${login}:${encodedPassword}@${streamUrl[1]}`;
       }
 
-      let onvifCodec = null;
-
       if (type === "ONVIF") {
         const {
-          url: onvifLink,
-          codec
+          url: firstUrl,
+          secondUrl
         } = await addONVIFCamera({
           ip,
           port,
           user: login,
           pass: unescape(password)
         });
-        streamUrl = onvifLink;
+        streamUrl = firstUrl;
+        subStreamUrl = secondUrl;
 
         if (streamUrl.includes(":undefined")) {
           streamUrl = streamUrl.replace(":undefined", "");
         }
-
-        onvifCodec = codec;
       }
 
       const cameras = await getAddedCameras();
@@ -128,15 +142,17 @@ async function handler(req, res) {
           message
         });
       } else {
-        await addOneCamera({
+        const camera = await addOneCamera({
           login,
           password: encodedPassword,
           name,
           type,
           url: streamUrl,
+          secondUrl: subStreamUrl,
           ip,
           port
         });
+        streamsHandler.addStream(camera);
         res.status(200).send({
           message
         });
@@ -159,7 +175,7 @@ async function handler(req, res) {
 var __webpack_require__ = require("../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [546,178], () => (__webpack_exec__(971)));
+var __webpack_exports__ = __webpack_require__.X(0, [546,564,178], () => (__webpack_exec__(971)));
 module.exports = __webpack_exports__;
 
 })();

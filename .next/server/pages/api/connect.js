@@ -5,6 +5,20 @@ exports.id = 607;
 exports.ids = [607];
 exports.modules = {
 
+/***/ 2167:
+/***/ ((module) => {
+
+module.exports = require("axios");
+
+/***/ }),
+
+/***/ 5828:
+/***/ ((module) => {
+
+module.exports = require("uuid");
+
+/***/ }),
+
 /***/ 7147:
 /***/ ((module) => {
 
@@ -37,11 +51,16 @@ const {
   getAddedCameras
 } = __webpack_require__(1546);
 
+const {
+  PROXY_PASS
+} = process.env;
+
+const axios = __webpack_require__(2167);
+
 async function handler(req, res) {
   if (req.method === "POST") {
     try {
-      const cameras = await getAddedCameras();
-      console.log(cameras); // TODO investigate P2P
+      const cameras = await getAddedCameras(); // TODO investigate P2P
 
       res.status(200).send({
         message: "Connected successfully"

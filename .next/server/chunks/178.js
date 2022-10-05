@@ -88,72 +88,34 @@ const checkUrlIsValid = url => new Promise((res, _) => {
 /* harmony import */ var vcloud_vms_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(456);
 /* harmony import */ var vcloud_vms_service__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vcloud_vms_service__WEBPACK_IMPORTED_MODULE_0__);
 
-let connectedONVIFCameras = [];
 
-const getCamera = cameraId => connectedONVIFCameras.find(cam => cam.cameraId === cameraId);
+const processUrl = (url, pass) => {
+  const encodedPassword = pass.split("").map(el => escape(el)).join("");
+  const streamUrl = url.split("//");
+  return `${streamUrl[0]}//${options.user}:${encodedPassword}@${streamUrl[1]}`;
+};
 
-const connectToONVIFCamera = async (cameraId, accountId, options) => new Promise(res => {
-  const cam = getCamera(cameraId);
-
-  if (!cam) {
-    const camera = new vcloud_vms_service__WEBPACK_IMPORTED_MODULE_0__.ONVIFCamera();
-    camera.init(options);
-    connectedONVIFCameras.push({
-      camera,
-      accountId,
-      cameraId
-    });
-  }
-
-  res();
-});
-
-const addONVIFCamera = async (options, isSubStream = false) => {
+const addONVIFCamera = async options => {
   const dev = new vcloud_vms_service__WEBPACK_IMPORTED_MODULE_0__.ONVIFCamera();
   await dev.init(options);
-  const streams = dev.camera.getUdpStreamUrl(); // console.log({streams});
-
-  let streamInfo = {
-    url: "",
-    codec: null
-  };
-  if (streams.length) streamInfo = isSubStream && streams.length > 1 ? streams[1] : streams[0];
-  let streamUrl = streamInfo.url;
+  const streams = dev.camera.getUdpStreamUrl();
+  const [mainStream, subStream] = streams;
+  let mainStreamUrl = mainStream.url || "",
+      subStreamUrl = subStream.url || "";
 
   if (options.pass) {
-    const encodedPassword = options.pass.split("").map(el => escape(el)).join("");
-    streamUrl = streamUrl.split("//");
-    streamUrl = `${streamUrl[0]}//${options.user}:${encodedPassword}@${streamUrl[1]}`;
-  } // console.log('=== ONVIF URL AND CODEC ===');
-  // console.log({ url: streamUrl, codec: streamInfo.codec });
-
+    mainStreamUrl = processUrl(mainStreamUrl, options.pass);
+    subStreamUrl = processUrl(subStreamUrl, options.pass);
+  }
 
   return {
-    url: streamUrl,
-    codec: streamInfo.codec
+    url: mainStreamUrl,
+    secondUrl: subStreamUrl
   };
-};
-
-const disconnectONVIFCamera = (cameraId, accountId) => {
-  connectedONVIFCameras = connectedONVIFCameras.filter(cam => !(cam.cameraId === cameraId && cam.accountId === accountId));
-};
-
-const moveONVIFCamera = (command, cameraId, accountId) => {
-  const camera = getCamera(cameraId);
-  if (camera && camera.accountId === accountId) camera.camera.move(command);
-};
-
-const stopONVIFCamera = (cameraId, accountId) => {
-  const camera = getCamera(cameraId);
-  if (camera && camera.accountId === accountId) camera.camera.stop();
 };
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  connectToONVIFCamera,
-  addONVIFCamera,
-  disconnectONVIFCamera,
-  moveONVIFCamera,
-  stopONVIFCamera
+  addONVIFCamera
 });
 
 /***/ })

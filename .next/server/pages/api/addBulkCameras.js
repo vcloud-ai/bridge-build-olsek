@@ -5,6 +5,20 @@ exports.id = 388;
 exports.ids = [388];
 exports.modules = {
 
+/***/ 7987:
+/***/ ((module) => {
+
+module.exports = require("terminate");
+
+/***/ }),
+
+/***/ 5828:
+/***/ ((module) => {
+
+module.exports = require("uuid");
+
+/***/ }),
+
 /***/ 456:
 /***/ ((module) => {
 
@@ -61,6 +75,8 @@ const {
   checkUrlIsValid
 } = __webpack_require__(3073);
 
+const streamsHandler = __webpack_require__(7564);
+
 const {
   addBulkOnvifCameras,
   getAddedCameras
@@ -75,12 +91,16 @@ async function handler(req, res) {
       const promises = cameras.map(cam => checkCamera(cam));
       let addedCameras = await Promise.all(promises);
       addedCameras = addedCameras.filter(cam => cam.name);
-      await addBulkOnvifCameras(addedCameras);
+      const newCameras = await addBulkOnvifCameras(addedCameras);
+      newCameras.forEach(cam => {
+        streamsHandler.addStream(cam);
+      });
       addedCameras = addedCameras.map(cam => {
         const camera = _objectSpread({}, cam);
 
         delete camera.password;
         delete camera.url;
+        delete camera.secondUrl;
         camera.isAdded = true;
         return camera;
       });
@@ -109,6 +129,7 @@ async function checkCamera(camera) {
     } = camera;
     const credsMatch = /(?<=\/{2})[^]+(?=@)/gi;
     let streamUrl = url;
+    let subStreamUrl = "";
 
     if (streamUrl && !password && credsMatch.test(streamUrl)) {
       const [credentials] = streamUrl.match(credsMatch);
@@ -123,25 +144,22 @@ async function checkCamera(camera) {
       streamUrl = `${streamUrl[0]}//${login}:${encodedPassword}@${streamUrl[1]}`;
     }
 
-    let onvifCodec = null;
-
     if (type === "ONVIF") {
       const {
-        url: onvifLink,
-        codec
+        url: firstUrl,
+        secondUrl
       } = await addONVIFCamera({
         ip,
         port,
         user: login,
         pass: unescape(password)
       });
-      streamUrl = onvifLink;
+      streamUrl = firstUrl;
+      subStreamUrl = secondUrl;
 
       if (streamUrl.includes(":undefined")) {
         streamUrl = streamUrl.replace(":undefined", "");
       }
-
-      onvifCodec = codec;
     }
 
     const cameras = await getAddedCameras();
@@ -157,6 +175,7 @@ async function checkCamera(camera) {
       name,
       type,
       url: streamUrl,
+      secondUrl: subStreamUrl,
       ip,
       port
     };
@@ -174,7 +193,7 @@ async function checkCamera(camera) {
 var __webpack_require__ = require("../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [546,178], () => (__webpack_exec__(2388)));
+var __webpack_exports__ = __webpack_require__.X(0, [546,564,178], () => (__webpack_exec__(2388)));
 module.exports = __webpack_exports__;
 
 })();

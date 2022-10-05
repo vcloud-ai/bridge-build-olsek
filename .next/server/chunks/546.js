@@ -10,10 +10,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "addBulkOnvifCameras": () => (/* binding */ addBulkOnvifCameras),
 /* harmony export */   "addOneCamera": () => (/* binding */ addOneCamera),
+/* harmony export */   "changeStream": () => (/* binding */ changeStream),
 /* harmony export */   "deleteAddedCameras": () => (/* binding */ deleteAddedCameras),
 /* harmony export */   "deleteOneCamera": () => (/* binding */ deleteOneCamera),
 /* harmony export */   "getAddedCameras": () => (/* binding */ getAddedCameras),
-/* harmony export */   "getAddedOnvifCameras": () => (/* binding */ getAddedOnvifCameras)
+/* harmony export */   "getAddedOnvifCameras": () => (/* binding */ getAddedOnvifCameras),
+/* harmony export */   "getCameraById": () => (/* binding */ getCameraById)
 /* harmony export */ });
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
@@ -27,11 +29,17 @@ const fs = __webpack_require__(7147);
 
 const util = __webpack_require__(3837);
 
+const uuid = __webpack_require__(5828);
+
 const confFileName = "deviceConf.json";
 const confFilePath = path.join(process.cwd(), confFileName);
 const createFile = util.promisify(fs.appendFile);
 const readContent = util.promisify(fs.readFile);
 const writeContent = util.promisify(fs.writeFile);
+const {
+  RTSP_SERVER_HOST,
+  RTSP_SERVER_PORT
+} = process.env;
 const encoding = "utf8";
 
 const checkFile = async () => {
@@ -70,7 +78,7 @@ const getAddedCameras = async () => {
     return cameras;
   } catch (error) {
     console.log(error);
-    return null;
+    return [];
   }
 };
 const addOneCamera = async ({
@@ -79,6 +87,7 @@ const addOneCamera = async ({
   name,
   type,
   url,
+  secondUrl,
   ip = "",
   port = ""
 }) => {
@@ -94,18 +103,27 @@ const addOneCamera = async ({
       filteredCams = cameras.filter(cam => cam.url !== url);
     }
 
-    const newCollection = JSON.stringify([...filteredCams, {
+    const id = uuid.v4();
+    const newCamera = {
       login,
       password,
       name,
       type,
       url,
+      secondUrl,
+      proxyUrl: `rtsp://${RTSP_SERVER_HOST}:${RTSP_SERVER_PORT}/rtspServer/${id}`,
       ip,
-      port
-    }]);
+      port,
+      id,
+      isMainStream: true,
+      isConnectedToCloud: false
+    };
+    const newCollection = JSON.stringify([...filteredCams, newCamera]);
     await writeContent(confFilePath, newCollection);
+    return newCamera;
   } catch (error) {
     console.log(error);
+    return null;
   }
 };
 const addBulkOnvifCameras = async (cameras = []) => {
@@ -117,18 +135,29 @@ const addBulkOnvifCameras = async (cameras = []) => {
       const isCamAdded = cameras.find(camera => camera.ip === cam.ip);
       return !isCamAdded;
     });
-    const newCollection = JSON.stringify([...filteredCams, ...cameras.map(cam => ({
-      login: cam.login || "",
-      password: cam.password || "",
-      name: cam.name,
-      type: cam.type,
-      url: cam.url,
-      ip: cam.ip || "",
-      port: cam.port || ""
-    }))]);
+    const newCameras = cameras.map(cam => {
+      const id = uuid.v4();
+      return {
+        login: cam.login || "",
+        password: cam.password || "",
+        name: cam.name,
+        type: cam.type,
+        url: cam.url,
+        secondUrl: cam.secondUrl,
+        ip: cam.ip || "",
+        port: cam.port || "",
+        proxyUrl: `rtsp://${RTSP_SERVER_HOST}:${RTSP_SERVER_PORT}/rtspServer/${id}`,
+        id,
+        isMainStream: true,
+        isConnectedToCloud: false
+      };
+    });
+    const newCollection = JSON.stringify([...filteredCams, ...newCameras]);
     await writeContent(confFilePath, newCollection);
+    return newCameras;
   } catch (error) {
     console.log(error);
+    return [];
   }
 };
 const deleteAddedCameras = async () => {
@@ -150,6 +179,17 @@ const deleteOneCamera = async (name, url, ip, port, type) => {
 
   await writeContent(confFilePath, JSON.stringify(updatedCams));
   return updatedCams;
+};
+const changeStream = async (updatedCameraInfo, cameras) => {
+  await checkFile();
+  let updatedCams = cameras.filter(cam => cam.id !== updatedCameraInfo.id);
+  updatedCams = [...updatedCams, updatedCameraInfo];
+  await writeContent(confFilePath, JSON.stringify(updatedCams));
+};
+const getCameraById = async id => {
+  await checkFile();
+  const cameras = await getAddedCameras();
+  return cameras.find(cam => cam.id === id);
 };
 
 /***/ })

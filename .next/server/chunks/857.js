@@ -122,7 +122,7 @@ __webpack_async_result__();
 
 __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "F": () => (/* binding */ connectToProxyServer),
+/* harmony export */   "Ih": () => (/* binding */ updateCameraStream),
 /* harmony export */   "Vb": () => (/* binding */ getAddedCameras),
 /* harmony export */   "YL": () => (/* binding */ searchCamerasInSubnet),
 /* harmony export */   "jU": () => (/* binding */ removeCamera),
@@ -131,6 +131,7 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony export */   "vV": () => (/* binding */ addCamera),
 /* harmony export */   "vq": () => (/* binding */ removeBulkCameras)
 /* harmony export */ });
+/* unused harmony export connectToProxyServer */
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(2167);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var components_common_Toast__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(2109);
@@ -264,7 +265,8 @@ const removeCamera = async camera => {
         name: camera.name,
         url: camera.url,
         port: camera.port,
-        ip: camera.ip
+        ip: camera.ip,
+        id: camera.id
       }
     });
     return data.cameras;
@@ -287,20 +289,37 @@ const connectToProxyServer = async () => {
   try {
     const {
       data
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/connect");
-    (0,components_common_Toast__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)({
+    } = await axios.post("/api/connect");
+    toast({
       type: "info",
       message: data.message
     });
   } catch (error) {
     if (error.response?.data?.message) {
-      (0,components_common_Toast__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)({
+      toast({
         type: "error",
         message: error.response.data.message
       });
       return;
     }
 
+    toast({
+      type: "error",
+      message: "Something went wrong"
+    });
+  }
+};
+const updateCameraStream = async (id, isMainStream) => {
+  try {
+    await axios__WEBPACK_IMPORTED_MODULE_0___default().patch("/api/editStream", {
+      id,
+      isMainStream
+    });
+    (0,components_common_Toast__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)({
+      type: "info",
+      message: "Successfully updated stream source"
+    });
+  } catch (error) {
     (0,components_common_Toast__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)({
       type: "error",
       message: "Something went wrong"

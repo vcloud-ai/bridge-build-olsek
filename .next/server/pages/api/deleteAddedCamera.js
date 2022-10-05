@@ -5,6 +5,27 @@ exports.id = 383;
 exports.ids = [383];
 exports.modules = {
 
+/***/ 7987:
+/***/ ((module) => {
+
+module.exports = require("terminate");
+
+/***/ }),
+
+/***/ 5828:
+/***/ ((module) => {
+
+module.exports = require("uuid");
+
+/***/ }),
+
+/***/ 2081:
+/***/ ((module) => {
+
+module.exports = require("child_process");
+
+/***/ }),
+
 /***/ 7147:
 /***/ ((module) => {
 
@@ -37,18 +58,22 @@ const {
   deleteOneCamera
 } = __webpack_require__(1546);
 
+const streamsHandler = __webpack_require__(7564);
+
 async function handler(req, res) {
   const {
     name,
     url,
     ip,
     port,
-    type
+    type,
+    id
   } = req.query;
 
   if (req.method === "DELETE") {
     try {
       const cameras = await deleteOneCamera(name, url, ip, port, type);
+      streamsHandler.destroyStream(id);
       res.status(200).send({
         cameras
       });
@@ -69,7 +94,7 @@ async function handler(req, res) {
 var __webpack_require__ = require("../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [546], () => (__webpack_exec__(9995)));
+var __webpack_exports__ = __webpack_require__.X(0, [546,564], () => (__webpack_exec__(9995)));
 module.exports = __webpack_exports__;
 
 })();

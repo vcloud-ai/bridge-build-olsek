@@ -202,7 +202,6 @@ function MyApp({
   Component,
   pageProps
 }) {
-  console.log(public_images_favicon_ico__WEBPACK_IMPORTED_MODULE_4__/* ["default"] */ .Z);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)((next_head__WEBPACK_IMPORTED_MODULE_0___default()), {
       children: [/*#__PURE__*/react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx("link", {

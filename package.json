@@ -1,8 +1,9 @@
 {
-  "name": "orange-finder",
+  "name": "finder",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "next start -p 80"
+    "start": "concurrently \"next start -p 80\" \"npm run init\"",
+    "init": "node init.js"
   }
 }

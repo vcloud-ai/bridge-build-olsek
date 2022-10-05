@@ -26,6 +26,13 @@ module.exports = require("node-onvif");
 
 /***/ }),
 
+/***/ 5828:
+/***/ ((module) => {
+
+module.exports = require("uuid");
+
+/***/ }),
+
 /***/ 855:
 /***/ ((module) => {
 
