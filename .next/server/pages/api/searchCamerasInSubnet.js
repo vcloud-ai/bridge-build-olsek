@@ -5,6 +5,13 @@ exports.id = 321;
 exports.ids = [321];
 exports.modules = {
 
+/***/ 7096:
+/***/ ((module) => {
+
+module.exports = require("bcrypt");
+
+/***/ }),
+
 /***/ 9821:
 /***/ ((module) => {
 
@@ -16,6 +23,13 @@ module.exports = require("get-ip-range");
 /***/ ((module) => {
 
 module.exports = require("ip");
+
+/***/ }),
+
+/***/ 9344:
+/***/ ((module) => {
+
+module.exports = require("jsonwebtoken");
 
 /***/ }),
 
@@ -98,6 +112,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (/* binding */ handler)
 /* harmony export */ });
 /* harmony import */ var services_search__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(1815);
+/* harmony import */ var services_auth__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(3614);
+/* harmony import */ var services_auth__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(services_auth__WEBPACK_IMPORTED_MODULE_1__);
 var __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([services_search__WEBPACK_IMPORTED_MODULE_0__]);
 services_search__WEBPACK_IMPORTED_MODULE_0__ = (__webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__)[0];
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
@@ -116,11 +132,20 @@ const {
   getAddedOnvifCameras
 } = __webpack_require__(1546);
 
+
 async function handler(req, res) {
   const networkRange = req.body;
 
   if (req.method === "POST") {
     try {
+      const isAuthorized = await (0,services_auth__WEBPACK_IMPORTED_MODULE_1__.validateToken)(req.headers.authorization);
+
+      if (!isAuthorized) {
+        return res.status(401).json({
+          message: "Unauthorized"
+        });
+      }
+
       let camerasInSubnet = await (0,services_search__WEBPACK_IMPORTED_MODULE_0__/* .startScanNetwork */ .$)(networkRange);
       const rangeIPv4 = getIPRange(networkRange.start, networkRange.end);
       camerasInSubnet = camerasInSubnet.filter(el => rangeIPv4.includes(el.ip));
@@ -134,6 +159,7 @@ async function handler(req, res) {
       }));
       res.status(200).json(camerasInSubnet);
     } catch (error) {
+      console.log(error);
       res.status(400).send(error.message);
     }
   } else {
@@ -152,7 +178,7 @@ __webpack_async_result__();
 var __webpack_require__ = require("../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [546,815], () => (__webpack_exec__(2886)));
+var __webpack_exports__ = __webpack_require__.X(0, [614,546,815], () => (__webpack_exec__(2886)));
 module.exports = __webpack_exports__;
 
 })();

@@ -115,8 +115,7 @@ const addOneCamera = async ({
       ip,
       port,
       id,
-      isMainStream: true,
-      isConnectedToCloud: false
+      isMainStream: true
     };
     const newCollection = JSON.stringify([...filteredCams, newCamera]);
     await writeContent(confFilePath, newCollection);
@@ -148,8 +147,7 @@ const addBulkOnvifCameras = async (cameras = []) => {
         port: cam.port || "",
         proxyUrl: `rtsp://${RTSP_SERVER_HOST}:${RTSP_SERVER_PORT}/rtspServer/${id}`,
         id,
-        isMainStream: true,
-        isConnectedToCloud: false
+        isMainStream: true
       };
     });
     const newCollection = JSON.stringify([...filteredCams, ...newCameras]);

@@ -5,6 +5,20 @@ exports.id = 780;
 exports.ids = [780];
 exports.modules = {
 
+/***/ 7096:
+/***/ ((module) => {
+
+module.exports = require("bcrypt");
+
+/***/ }),
+
+/***/ 9344:
+/***/ ((module) => {
+
+module.exports = require("jsonwebtoken");
+
+/***/ }),
+
 /***/ 7987:
 /***/ ((module) => {
 
@@ -33,6 +47,13 @@ module.exports = require("child_process");
 
 /***/ }),
 
+/***/ 6113:
+/***/ ((module) => {
+
+module.exports = require("crypto");
+
+/***/ }),
+
 /***/ 7147:
 /***/ ((module) => {
 
@@ -54,7 +75,7 @@ module.exports = require("util");
 
 /***/ }),
 
-/***/ 971:
+/***/ 2858:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -76,9 +97,21 @@ const {
 
 const streamsHandler = __webpack_require__(7564);
 
+const {
+  validateToken
+} = __webpack_require__(3614);
+
 async function handler(req, res) {
   if (req.method === "POST") {
     try {
+      const isAuthorized = await validateToken(req.headers.authorization);
+
+      if (!isAuthorized) {
+        return res.status(401).json({
+          message: "Unauthorized"
+        });
+      }
+
       const {
         name,
         url,
@@ -171,7 +204,7 @@ async function handler(req, res) {
 var __webpack_require__ = require("../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [546,564,178], () => (__webpack_exec__(971)));
+var __webpack_exports__ = __webpack_require__.X(0, [614,546,564,178], () => (__webpack_exec__(2858)));
 module.exports = __webpack_exports__;
 
 })();

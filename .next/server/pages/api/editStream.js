@@ -5,6 +5,20 @@ exports.id = 679;
 exports.ids = [679];
 exports.modules = {
 
+/***/ 7096:
+/***/ ((module) => {
+
+module.exports = require("bcrypt");
+
+/***/ }),
+
+/***/ 9344:
+/***/ ((module) => {
+
+module.exports = require("jsonwebtoken");
+
+/***/ }),
+
 /***/ 7987:
 /***/ ((module) => {
 
@@ -23,6 +37,13 @@ module.exports = require("uuid");
 /***/ ((module) => {
 
 module.exports = require("child_process");
+
+/***/ }),
+
+/***/ 6113:
+/***/ ((module) => {
+
+module.exports = require("crypto");
 
 /***/ }),
 
@@ -67,6 +88,10 @@ const {
 
 const streamsHandler = __webpack_require__(7564);
 
+const {
+  validateToken
+} = __webpack_require__(3614);
+
 async function handler(req, res) {
   const {
     id,
@@ -75,6 +100,14 @@ async function handler(req, res) {
 
   if (req.method === "PATCH") {
     try {
+      const isAuthorized = await validateToken(req.headers.authorization);
+
+      if (!isAuthorized) {
+        return res.status(401).json({
+          message: "Unauthorized"
+        });
+      }
+
       const cameras = await getAddedCameras();
       const cameraToUpdate = cameras.find(camera => camera.id === id);
 
@@ -112,7 +145,7 @@ async function handler(req, res) {
 var __webpack_require__ = require("../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [546,564], () => (__webpack_exec__(7747)));
+var __webpack_exports__ = __webpack_require__.X(0, [614,546,564], () => (__webpack_exec__(7747)));
 module.exports = __webpack_exports__;
 
 })();

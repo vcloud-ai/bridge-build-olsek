@@ -69,7 +69,7 @@ class Streamer {
     });
     this.streamProcess.on("close", () => {
       if (this.isStopped) return;
-      this.restartTimeout = setTimeout(this.init.bind(this), 5000);
+      this.restartTimeout = setTimeout(this.init.bind(this), 15000);
     });
   }
 
