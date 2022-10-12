@@ -3,41 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "concurrently \"next dev\" \"npm run init\"",
-    "build": "next build",
     "start": "concurrently \"next start -p 80\" \"npm run init\"",
-    "init": "node init.js",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "@emotion/react": "^11.10.4",
-    "@emotion/styled": "^11.10.4",
-    "@mui/material": "^5.10.7",
-    "axios": "^0.27.2",
-    "bcrypt": "^5.1.0",
-    "get-ip-range": "^4.0.1",
-    "ip": "^1.1.8",
-    "is-port-reachable": "^4.0.0",
-    "jsonwebtoken": "^8.5.1",
-    "moment": "^2.29.4",
-    "next": "12.3.1",
-    "node-onvif": "^0.1.7",
-    "react": "18.2.0",
-    "react-copy-to-clipboard": "^5.1.0",
-    "react-dom": "18.2.0",
-    "react-loader-spinner": "^5.3.4",
-    "react-toastify": "^9.0.8",
-    "styled-components": "^5.3.5",
-    "terminate": "^2.5.0",
-    "typeface-montserrat": "^1.1.13",
-    "uuid": "^9.0.0",
-    "vcloud-vms-service": "git+https://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:x-oauth-basic@github.com/vcloudai/vcloud-vms-service.git",
-    "xml2js": "^0.4.23"
-  },
-  "devDependencies": {
-    "babel-plugin-styled-components": "^2.0.7",
-    "concurrently": "^7.4.0",
-    "eslint": "8.24.0",
-    "eslint-config-next": "12.3.1"
+    "init": "node init.js"
   }
 }
