@@ -12,10 +12,10 @@ module.exports = require("axios");
 
 /***/ }),
 
-/***/ 7096:
+/***/ 8432:
 /***/ ((module) => {
 
-module.exports = require("bcrypt");
+module.exports = require("bcryptjs");
 
 /***/ }),
 

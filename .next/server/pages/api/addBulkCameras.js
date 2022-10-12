@@ -5,10 +5,10 @@ exports.id = 388;
 exports.ids = [388];
 exports.modules = {
 
-/***/ 7096:
+/***/ 8432:
 /***/ ((module) => {
 
-module.exports = require("bcrypt");
+module.exports = require("bcryptjs");
 
 /***/ }),
 

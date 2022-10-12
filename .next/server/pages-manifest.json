@@ -1,10 +1,9 @@
 {
-  "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/addedDevices": "pages/addedDevices.html",
   "/api/addBulkCameras": "pages/api/addBulkCameras.js",
-  "/api/auth": "pages/api/auth.js",
   "/api/addCameraInfo": "pages/api/addCameraInfo.js",
+  "/api/auth": "pages/api/auth.js",
   "/api/connect": "pages/api/connect.js",
   "/api/connectStreamsToCloud": "pages/api/connectStreamsToCloud.js",
   "/api/deleteAddedCamera": "pages/api/deleteAddedCamera.js",
@@ -21,6 +20,7 @@
   "/": "pages/index.html",
   "/login": "pages/login.html",
   "/settings": "pages/settings.html",
+  "/_app": "pages/_app.js",
   "/_document": "pages/_document.js",
   "/404": "pages/404.html"
 }

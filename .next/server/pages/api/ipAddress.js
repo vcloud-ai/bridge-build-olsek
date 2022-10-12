@@ -4,11 +4,11 @@ exports.id = 397;
 exports.ids = [397];
 exports.modules = {
 
-/***/ 7096:
+/***/ 8432:
 /***/ ((module) => {
 
 "use strict";
-module.exports = require("bcrypt");
+module.exports = require("bcryptjs");
 
 /***/ }),
 

@@ -13,7 +13,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 const jwt = __webpack_require__(9344);
 
-const bcrypt = __webpack_require__(7096);
+const bcrypt = __webpack_require__(8432);
 
 const {
   SECRET,
@@ -63,7 +63,7 @@ const generateToken = async password => {
     let isValidPassword;
 
     if (creds.password) {
-      isValidPassword = await bcrypt.compare(password, creds.password);
+      isValidPassword = bcrypt.compareSync(password, creds.password);
     } else {
       isValidPassword = password === DEFAULT_PASS;
     }
@@ -106,9 +106,8 @@ const updatePassword = async password => {
 
   try {
     const creds = await getAuthConf();
-    const salt = await bcrypt.genSalt();
-    const passwordHash = await bcrypt.hash(password, salt);
-    creds.password = passwordHash;
+    const salt = bcrypt.genSaltSync(8);
+    creds.password = bcrypt.hashSync(password, salt);
     await writeContent(credConfPath, JSON.stringify(creds));
     return true;
   } catch (error) {
