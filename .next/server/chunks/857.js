@@ -613,8 +613,8 @@ const getDevicesGroupId = async token => {
     const {
       data
     } = await partizanInstance.post(`/rest/v3/getCamerasGroupList`);
-    const [camerasGroup] = data;
-    return camerasGroup.cameras_group_id;
+    const groupId = data.data[0].cameras_group_id;
+    return groupId;
   } catch (error) {
     return null;
   }
