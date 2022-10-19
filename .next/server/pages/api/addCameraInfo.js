@@ -5,6 +5,13 @@ exports.id = 780;
 exports.ids = [780];
 exports.modules = {
 
+/***/ 2167:
+/***/ ((module) => {
+
+module.exports = require("axios");
+
+/***/ }),
+
 /***/ 8432:
 /***/ ((module) => {
 
@@ -16,6 +23,20 @@ module.exports = require("bcryptjs");
 /***/ ((module) => {
 
 module.exports = require("jsonwebtoken");
+
+/***/ }),
+
+/***/ 6689:
+/***/ ((module) => {
+
+module.exports = require("react");
+
+/***/ }),
+
+/***/ 997:
+/***/ ((module) => {
+
+module.exports = require("react/jsx-runtime");
 
 /***/ }),
 
@@ -37,6 +58,20 @@ module.exports = require("uuid");
 /***/ ((module) => {
 
 module.exports = require("vcloud-vms-service");
+
+/***/ }),
+
+/***/ 3590:
+/***/ ((module) => {
+
+module.exports = import("react-toastify");;
+
+/***/ }),
+
+/***/ 6555:
+/***/ ((module) => {
+
+module.exports = import("uuid");;
 
 /***/ }),
 
@@ -75,7 +110,7 @@ module.exports = require("util");
 
 /***/ }),
 
-/***/ 971:
+/***/ 2858:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -204,7 +239,7 @@ async function handler(req, res) {
 var __webpack_require__ = require("../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [614,546,564,178], () => (__webpack_exec__(971)));
+var __webpack_exports__ = __webpack_require__.X(0, [614,546,564,178], () => (__webpack_exec__(2858)));
 module.exports = __webpack_exports__;
 
 })();

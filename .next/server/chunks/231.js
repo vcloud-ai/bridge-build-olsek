@@ -40,13 +40,13 @@ async function checkPartizanToken() {
     if (now >= longTokenExpTime) {
       const creds = await getCloudCreds();
       if (!creds.password) return null;
-      const data = await (0,services_requests__WEBPACK_IMPORTED_MODULE_0__/* .logIntoCloud */ .ih)(creds);
+      const data = await (0,services_requests__WEBPACK_IMPORTED_MODULE_0__.logIntoCloud)(creds);
       await updateTokens(data);
       return data.shortToken;
     }
 
     if (now >= shortTokenExpTime) {
-      const data = await (0,services_requests__WEBPACK_IMPORTED_MODULE_0__/* .getPartizanShortToken */ .n)(longToken);
+      const data = await (0,services_requests__WEBPACK_IMPORTED_MODULE_0__.getPartizanShortToken)(longToken);
       await updateShortToken(data);
       return data.shortToken;
     }

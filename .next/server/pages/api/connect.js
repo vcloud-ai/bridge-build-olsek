@@ -114,9 +114,9 @@ async function handler(req, res) {
         });
       }
 
-      const data = await (0,services_requests__WEBPACK_IMPORTED_MODULE_0__/* .logIntoCloud */ .ih)(req.body);
+      const data = await (0,services_requests__WEBPACK_IMPORTED_MODULE_0__.logIntoCloud)(req.body);
 
-      if (data.errorDescription) {
+      if (data.errorCode) {
         return res.status(200).send({
           message: data.errorDescription
         });
@@ -127,7 +127,7 @@ async function handler(req, res) {
         login
       } = await updateCloudAccessData(data, req.body);
       const cloudAuthInfo = await getCloudAuthInfo();
-      const devicesGroupId = await (0,services_requests__WEBPACK_IMPORTED_MODULE_0__/* .getDevicesGroupId */ .jV)(cloudAuthInfo.shortToken);
+      const devicesGroupId = await (0,services_requests__WEBPACK_IMPORTED_MODULE_0__.getDevicesGroupId)(cloudAuthInfo.shortToken);
       await addDevicesGroupId(devicesGroupId);
       res.status(200).send({
         message,
@@ -193,7 +193,7 @@ __webpack_async_result__();
 var __webpack_require__ = require("../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [614,75], () => (__webpack_exec__(7698)));
+var __webpack_exports__ = __webpack_require__.X(0, [614], () => (__webpack_exec__(7698)));
 module.exports = __webpack_exports__;
 
 })();

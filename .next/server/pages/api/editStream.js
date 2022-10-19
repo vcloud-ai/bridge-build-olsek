@@ -5,6 +5,13 @@ exports.id = 679;
 exports.ids = [679];
 exports.modules = {
 
+/***/ 2167:
+/***/ ((module) => {
+
+module.exports = require("axios");
+
+/***/ }),
+
 /***/ 8432:
 /***/ ((module) => {
 
@@ -19,6 +26,20 @@ module.exports = require("jsonwebtoken");
 
 /***/ }),
 
+/***/ 6689:
+/***/ ((module) => {
+
+module.exports = require("react");
+
+/***/ }),
+
+/***/ 997:
+/***/ ((module) => {
+
+module.exports = require("react/jsx-runtime");
+
+/***/ }),
+
 /***/ 7987:
 /***/ ((module) => {
 
@@ -30,6 +51,20 @@ module.exports = require("terminate");
 /***/ ((module) => {
 
 module.exports = require("uuid");
+
+/***/ }),
+
+/***/ 3590:
+/***/ ((module) => {
+
+module.exports = import("react-toastify");;
+
+/***/ }),
+
+/***/ 6555:
+/***/ ((module) => {
+
+module.exports = import("uuid");;
 
 /***/ }),
 

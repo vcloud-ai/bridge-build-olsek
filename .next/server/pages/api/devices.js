@@ -168,7 +168,7 @@ async function handler(req, res) {
       }
 
       const token = await (0,helpers_getPartizanToken__WEBPACK_IMPORTED_MODULE_0__/* ["default"] */ .Z)();
-      const cloudDevices = await (0,services_requests__WEBPACK_IMPORTED_MODULE_1__/* .getCloudStreams */ .JT)(token);
+      const cloudDevices = await (0,services_requests__WEBPACK_IMPORTED_MODULE_1__.getCloudStreams)(token);
       const allCams = await getAddedCameras();
       const cameras = allCams.map(cam => {
         const res = cam;
@@ -199,7 +199,7 @@ __webpack_async_result__();
 var __webpack_require__ = require("../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [614,546,564,75,231], () => (__webpack_exec__(6948)));
+var __webpack_exports__ = __webpack_require__.X(0, [614,546,564,231], () => (__webpack_exec__(6948)));
 module.exports = __webpack_exports__;
 
 })();

@@ -5,6 +5,13 @@ exports.id = 321;
 exports.ids = [321];
 exports.modules = {
 
+/***/ 2167:
+/***/ ((module) => {
+
+module.exports = require("axios");
+
+/***/ }),
+
 /***/ 8432:
 /***/ ((module) => {
 
@@ -40,6 +47,20 @@ module.exports = require("node-onvif");
 
 /***/ }),
 
+/***/ 6689:
+/***/ ((module) => {
+
+module.exports = require("react");
+
+/***/ }),
+
+/***/ 997:
+/***/ ((module) => {
+
+module.exports = require("react/jsx-runtime");
+
+/***/ }),
+
 /***/ 5828:
 /***/ ((module) => {
 
@@ -58,6 +79,20 @@ module.exports = require("xml2js");
 /***/ ((module) => {
 
 module.exports = import("is-port-reachable");;
+
+/***/ }),
+
+/***/ 3590:
+/***/ ((module) => {
+
+module.exports = import("react-toastify");;
+
+/***/ }),
+
+/***/ 6555:
+/***/ ((module) => {
+
+module.exports = import("uuid");;
 
 /***/ }),
 

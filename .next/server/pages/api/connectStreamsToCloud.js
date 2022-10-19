@@ -127,7 +127,7 @@ async function handler(req, res) {
         groupId
       } = await getCloudAuthInfo();
       const token = await (0,helpers_getPartizanToken__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)();
-      const promises = devices.map(device => (0,services_requests__WEBPACK_IMPORTED_MODULE_0__/* .connectCamToCloud */ .y5)(device, token, groupId));
+      const promises = devices.map(device => (0,services_requests__WEBPACK_IMPORTED_MODULE_0__.connectCamToCloud)(device, token, groupId));
       await Promise.all(promises);
       await res.status(200).send({
         message: "Success"
@@ -153,7 +153,7 @@ __webpack_async_result__();
 var __webpack_require__ = require("../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [614,75,231], () => (__webpack_exec__(3759)));
+var __webpack_exports__ = __webpack_require__.X(0, [614,231], () => (__webpack_exec__(3759)));
 module.exports = __webpack_exports__;
 
 })();
