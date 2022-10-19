@@ -110,7 +110,7 @@ module.exports = require("util");
 
 /***/ }),
 
-/***/ 2858:
+/***/ 971:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 __webpack_require__.r(__webpack_exports__);
@@ -239,7 +239,7 @@ async function handler(req, res) {
 var __webpack_require__ = require("../../webpack-api-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = __webpack_require__.X(0, [614,546,564,178], () => (__webpack_exec__(2858)));
+var __webpack_exports__ = __webpack_require__.X(0, [614,546,564,178], () => (__webpack_exec__(971)));
 module.exports = __webpack_exports__;
 
 })();
