@@ -16,7 +16,7 @@ __webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __we
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(5675);
 /* harmony import */ var next_image__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(next_image__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(3592);
+/* harmony import */ var _styles__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(971);
 /* harmony import */ var public_images_menu_fill_svg__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(6487);
 /* harmony import */ var public_images_vCloudAi_symbol_logo_svg__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(1888);
 /* harmony import */ var _parts_DropDownMenu__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(8089);
@@ -189,7 +189,7 @@ const Link = styled_components__WEBPACK_IMPORTED_MODULE_0___default().a.withConf
 
 /***/ }),
 
-/***/ 3592:
+/***/ 971:
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
 "use strict";

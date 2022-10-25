@@ -89,16 +89,13 @@ const checkUrlIsValid = url => new Promise((res, _) => {
 /* harmony import */ var vcloud_vms_service__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vcloud_vms_service__WEBPACK_IMPORTED_MODULE_0__);
 
 
-const processUrl = (url, pass) => {
+const processUrl = (url, pass, user) => {
   const encodedPassword = pass.split("").map(el => escape(el)).join("");
   const streamUrl = url.split("//");
-  return `${streamUrl[0]}//${options.user}:${encodedPassword}@${streamUrl[1]}`;
+  return `${streamUrl[0]}//${user}:${encodedPassword}@${streamUrl[1]}`;
 };
 
 const addONVIFCamera = async options => {
-  console.log({
-    options
-  });
   const dev = new vcloud_vms_service__WEBPACK_IMPORTED_MODULE_0__.ONVIFCamera();
   await dev.init(options);
   const streams = dev.camera.getUdpStreamUrl();
@@ -107,8 +104,8 @@ const addONVIFCamera = async options => {
       subStreamUrl = subStream.url || "";
 
   if (options?.pass) {
-    mainStreamUrl = processUrl(mainStreamUrl, options.pass);
-    subStreamUrl = processUrl(subStreamUrl, options.pass);
+    mainStreamUrl = processUrl(mainStreamUrl, options.pass, options.user);
+    subStreamUrl = processUrl(subStreamUrl, options.pass, options.user);
   }
 
   return {
