@@ -40,11 +40,7 @@ const startScanNetwork = async ips => {
   const networkRangeEnd = cutIp(networkRange.end);
   const propsStart = cutIp(ips.start);
   const propsEnd = cutIp(ips.end);
-
-  if (networkRangeStart === propsStart && networkRangeEnd === propsEnd) {
-    return _scanLocalNetwork__WEBPACK_IMPORTED_MODULE_1___default()();
-  }
-
+  if (networkRangeStart === propsStart && networkRangeEnd === propsEnd) return _scanLocalNetwork__WEBPACK_IMPORTED_MODULE_1___default()();
   return (0,_scanSpecialNetworkRange__WEBPACK_IMPORTED_MODULE_2__/* ["default"] */ .Z)(ips);
 };
 __webpack_async_result__();

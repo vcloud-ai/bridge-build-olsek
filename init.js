@@ -7,7 +7,7 @@ const initStreams = async () => {
   try {
     await axios.get(`http://${HOST}:${PORT}/api/init`);
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
     setTimeout(initStreams, 3000);
   }
 };

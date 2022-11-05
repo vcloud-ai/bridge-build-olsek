@@ -274,7 +274,7 @@ function MyApp({
   const {
     0: isLoadingApp,
     1: setIsLoadingApp
-  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(false);
+  } = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(true);
   const {
     0: isLoggedIn,
     1: setIsLoggedIn
