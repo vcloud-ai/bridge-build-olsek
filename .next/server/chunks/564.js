@@ -59,10 +59,11 @@ class Streamer {
       this.streamUrl = this.info.secondUrl;
     }
 
-    const cmd = ["-rtsp_transport", "tcp", "-timeout", "10000000", "-i", this.streamUrl, "-threads", "1", "-loglevel", "error", "-c", "copy", "-f", "rtsp", this.info.proxyUrl];
+    const cmd = ["-rtsp_transport", "tcp", "-stimeout", "10000000", "-i", this.streamUrl, "-threads", "1", "-loglevel", "error", "-c", "copy", "-f", "rtsp", this.info.proxyUrl];
     this.streamProcess = spawn("ffmpeg", cmd);
-    this.streamProcess.stderr.on("data", data => {// console.log(`camera id ====> ${this.info.id}`);
-      // console.log(data.toString("utf8"));
+    this.streamProcess.stderr.on("data", data => {
+      console.log(`camera id ====> ${this.info.id}`);
+      console.log(data.toString("utf8"));
     });
     this.streamProcess.stdout.on("data", data => {// console.log(`camera id ====> ${this.info.id}`);
       // console.log(data.toString("utf8"));
