@@ -116,9 +116,9 @@ async function handler(req, res) {
 
       const data = await (0,services_requests__WEBPACK_IMPORTED_MODULE_0__.logIntoCloud)(req.body);
 
-      if (data.errorCode) {
+      if (data.error_code) {
         return res.status(200).send({
-          message: data.errorDescription
+          message: data.error_description
         });
       }
 
@@ -127,7 +127,7 @@ async function handler(req, res) {
         login
       } = await updateCloudAccessData(data, req.body);
       const cloudAuthInfo = await getCloudAuthInfo();
-      const devicesGroupId = await (0,services_requests__WEBPACK_IMPORTED_MODULE_0__.getDevicesGroupId)(cloudAuthInfo.shortToken);
+      const devicesGroupId = await (0,services_requests__WEBPACK_IMPORTED_MODULE_0__.getDevicesGroupId)(cloudAuthInfo.short_token);
       await addDevicesGroupId(devicesGroupId);
       res.status(200).send({
         message,

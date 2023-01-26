@@ -27,10 +27,10 @@ const {
 async function checkPartizanToken() {
   try {
     const {
-      longToken,
-      longTokenValidTill,
-      shortToken,
-      shortTokenValidTill
+      long_token: longToken,
+      long_token_valid_till: longTokenValidTill,
+      short_token: shortToken,
+      short_token_valid_till: shortTokenValidTill
     } = await getCloudAuthInfo();
     if (!longToken) return null;
     const now = Number(moment().format("x"));
