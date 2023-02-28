@@ -59,7 +59,9 @@ class Streamer {
       this.streamUrl = this.info.secondUrl;
     }
 
-    const cmd = ["-rtsp_transport", "tcp", "-timeout", // used for ffmpeg v4. use -timeout for v5
+    console.log("production");
+    const timeoutOpt =  false ? 0 : '-stimeout';
+    const cmd = ["-rtsp_transport", "tcp", timeoutOpt, // used for ffmpeg v4. use -timeout for v5
     "10000000", "-i", this.streamUrl, "-threads", "1", "-loglevel", "error", "-c", "copy", "-f", "rtsp", this.info.proxyUrl];
     this.streamProcess = spawn("ffmpeg", cmd);
     this.streamProcess.stderr.on("data", data => {
