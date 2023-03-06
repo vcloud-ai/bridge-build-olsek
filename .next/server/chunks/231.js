@@ -38,6 +38,7 @@ async function checkPartizanToken() {
     const longTokenExpTime = +longTokenValidTill;
 
     if (now >= longTokenExpTime) {
+      console.log('long token expired');
       const creds = await getCloudCreds();
       if (!creds.password) return null;
       const data = await (0,services_requests__WEBPACK_IMPORTED_MODULE_0__.logIntoCloud)(creds);
@@ -46,6 +47,7 @@ async function checkPartizanToken() {
     }
 
     if (now >= shortTokenExpTime) {
+      console.log('short token expired');
       const data = await (0,services_requests__WEBPACK_IMPORTED_MODULE_0__.getPartizanShortToken)(longToken);
       await updateShortToken(data);
       return data.shortToken;

@@ -127,13 +127,16 @@ async function handler(req, res) {
         group_id: groupId
       } = await getCloudAuthInfo();
       const token = await (0,helpers_getPartizanToken__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)();
+      console.log({
+        token
+      });
       const promises = devices.map(device => (0,services_requests__WEBPACK_IMPORTED_MODULE_0__.connectCamToCloud)(device, token, groupId));
       await Promise.all(promises);
       await res.status(200).send({
         message: "Success"
       });
     } catch (error) {
-      console.log(error.message);
+      console.log('CONNECT CAMS TO CLOUD ERROR ===> ', error.message);
       res.status(400).send({
         message: error.message
       });

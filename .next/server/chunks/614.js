@@ -197,8 +197,8 @@ const updateCloudAccessData = async (data, cloudCreds) => {
     creds.cloudAccessData = _objectSpread(_objectSpread({}, data), {}, {
       cloudAuthDetails
     });
-    delete creds.cloudAccessData.errorCode;
-    delete creds.cloudAccessData.errorDescription;
+    delete creds.cloudAccessData.error_code;
+    delete creds.cloudAccessData.error_description;
     await writeContent(credConfPath, JSON.stringify(creds));
     return {
       message: "Successfully logged into cloud",
@@ -216,10 +216,10 @@ const updateTokens = async data => {
   try {
     const creds = await getAuthConf();
     creds.cloudAccessData = _objectSpread(_objectSpread({}, creds.cloudAccessData), {}, {
-      shortToken: data.shortToken,
-      longToken: data.longToken,
-      shortTokenValidTill: data.shortTokenValidTill,
-      longTokenValidTill: data.longTokenValidTill
+      shortToken: data.short_token,
+      longToken: data.long_token,
+      shortTokenValidTill: data.short_token_valid_till,
+      longTokenValidTill: data.long_token_valid_till
     });
     await writeContent(credConfPath, JSON.stringify(creds));
   } catch (error) {
@@ -231,8 +231,8 @@ const updateShortToken = async data => {
   try {
     const creds = await getAuthConf();
     creds.cloudAccessData = _objectSpread(_objectSpread({}, creds.cloudAccessData), {}, {
-      shortToken: data.shortToken,
-      shortTokenValidTill: data.shortTokenValidTill
+      short_token: data.short_token,
+      short_token_valid_till: data.short_token_valid_till
     });
     await writeContent(credConfPath, JSON.stringify(creds));
   } catch (error) {
