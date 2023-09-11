@@ -59,10 +59,13 @@ class Streamer {
       this.streamUrl = this.info.secondUrl;
     }
 
-    console.log("production");
-    const timeoutOpt =  false ? 0 : '-stimeout';
+    const ffmpegVersion = process.env.FFMPEG_VERSION || 4;
+    console.log({
+      ffmpegVersion: +ffmpegVersion
+    });
+    const timeoutOpt = +ffmpegVersion < 5 ? "-stimeout" : "-timeout";
     const cmd = ["-rtsp_transport", "tcp", timeoutOpt, // used for ffmpeg v4. use -timeout for v5
-    "10000000", "-i", this.streamUrl, "-threads", "1", '-max_delay', '5000000', "-loglevel", "error", '-r', '15', "-c", "copy", "-f", "rtsp", this.info.proxyUrl];
+    "10000000", "-i", unescape(this.streamUrl), "-threads", "1", "-max_delay", "5000000", "-loglevel", "error", "-r", "15", "-c", "copy", "-f", "rtsp", this.info.proxyUrl];
     this.streamProcess = spawn("ffmpeg", cmd);
     this.streamProcess.stderr.on("data", data => {
       console.log(`camera id ====> ${this.info.id}`);
