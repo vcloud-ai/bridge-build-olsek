@@ -134,6 +134,7 @@ async function handler(req, res) {
         login
       });
     } catch (error) {
+      console.log(error.message);
       res.status(400).send({
         message: "Something went wrong"
       });

@@ -641,7 +641,7 @@ const logoutFromCloud = async () => {
     setToken();
     const {
       data
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]('/api/connect');
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default()["delete"]("/api/connect");
     return data.login;
   } catch (error) {
     if (error.response?.status === 401) {
@@ -666,7 +666,7 @@ const logoutFromCloud = async () => {
 const updateCameraStream = async (id, isMainStream) => {
   try {
     setToken();
-    await axios__WEBPACK_IMPORTED_MODULE_0___default().patch('/api/editStream', {
+    await axios__WEBPACK_IMPORTED_MODULE_0___default().patch("/api/editStream", {
       id,
       isMainStream
     });
@@ -690,7 +690,7 @@ const login = async password => {
   try {
     const {
       data
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/login', {
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/login", {
       password
     });
     const toastContent = data.token ? {
@@ -714,7 +714,7 @@ const auth = async token => {
   try {
     const {
       data
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/auth?token=${token}');
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get(`/api/auth?token=${token}`);
     return data.isValid;
   } catch (error) {
     return false;
@@ -725,7 +725,7 @@ const updatePassword = async password => {
     setToken();
     const {
       data
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/updatePassword', {
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/updatePassword", {
       password
     });
     const toastContent = data.isUpdated ? {
@@ -750,7 +750,7 @@ const getIpAddress = async () => {
     setToken();
     const {
       data
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get('/api/ipAddress');
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().get("/api/ipAddress");
     return data.ip;
   } catch (error) {
     if (error.response?.status === 401) {
@@ -769,7 +769,7 @@ const updateIpAddress = async ip => {
     setToken();
     const {
       data
-    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/ipAddress', {
+    } = await axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/ipAddress", {
       ip
     });
     (0,components_common_Toast__WEBPACK_IMPORTED_MODULE_1__/* ["default"] */ .Z)({
@@ -786,7 +786,7 @@ const updateIpAddress = async ip => {
 const connectStreamsToCloud = async (devices = []) => {
   try {
     setToken();
-    await axios__WEBPACK_IMPORTED_MODULE_0___default().post('/api/connectStreamsToCloud', {
+    await axios__WEBPACK_IMPORTED_MODULE_0___default().post("/api/connectStreamsToCloud", {
       devices
     });
   } catch (error) {
@@ -815,7 +815,7 @@ const logIntoCloud = async ({
     params.append("password", password);
     const {
       data
-    } = await partizanInstance.post('/security/login', params);
+    } = await partizanInstance.post("/security/login", params);
     return data;
   } catch (error) {
     throw new Error(error.message);
@@ -827,7 +827,7 @@ const getPartizanShortToken = async longToken => {
     params.append("token", longToken);
     const {
       data
-    } = await partizanInstance.post('/security/getToken', params);
+    } = await partizanInstance.post("/security/getToken", params);
     return data;
   } catch (error) {
     throw new Error(error.message);
@@ -838,7 +838,7 @@ const getDevicesGroupId = async token => {
     partizanInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     const {
       data
-    } = await partizanInstance.post('/rest/DeviceList/Groups/getCamerasGroupList');
+    } = await partizanInstance.post("/rest/DeviceList/Groups/getCamerasGroupList");
     const group_id = data.data[0].cameras_group_id;
     return group_id;
   } catch (error) {
@@ -851,7 +851,7 @@ const getCloudStreams = async token => {
     partizanInstance.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     const {
       data
-    } = await partizanInstance.get('/rest/DeviceList/getDeviceList');
+    } = await partizanInstance.get("/rest/DeviceList/getDeviceList");
     return data.user_devices.filter(d => d.stream).map(d => ({
       name: d.device_name,
       stream: d.stream
@@ -869,7 +869,7 @@ const connectCamToCloud = async (device, token, groupId) => {
     params.append("device_tzname", tz);
     params.append("cameras_group_id", groupId);
     params.append("stream_url", device.proxyUrl);
-    await partizanInstance.post('/rest/DeviceList/addVirtualDevice', params);
+    await partizanInstance.post("/rest/DeviceList/addVirtualDevice", params);
   } catch (error) {
     throw new Error(error.message);
   }
