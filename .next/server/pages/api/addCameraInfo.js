@@ -180,6 +180,7 @@ async function handler(req, res) {
         } = await addONVIFCamera({
           ip,
           port,
+          protocol: "http",
           user: login,
           pass: unescape(password)
         });

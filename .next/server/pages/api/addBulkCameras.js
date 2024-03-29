@@ -219,6 +219,7 @@ async function checkCamera(camera) {
       } = await addONVIFCamera({
         ip,
         port,
+        protocol: "http",
         user: login,
         pass: unescape(password)
       });
