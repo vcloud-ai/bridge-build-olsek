@@ -51,23 +51,23 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 const DEFAULT_STYLES_CONF = {
   colors: {
-    containerBackgroundColor: "#09141F",
-    menuColor: "#172A3B",
-    subMenuColor: "#152534",
-    contextMenuColor: "#161716",
-    secondaryContainerBackgroundColor: "#2E4458",
-    messageColor: "#3D5469",
-    inactiveBackgroundColor: "#BFCDD9",
-    themeGradientColors: ["#152534", "#09141F"],
-    themeSecondaryGradientColors: ["#223445", "#152534"],
-    buttonWrapperGradientColors: ["#2E4458", "#0D1824"],
-    accentGradientColors: ["#CBFF00", "#7BAB00"],
-    accentColor: "#CBFF00",
-    accentSlightlyTransparentColor: "#CBFF0099",
-    accentStronglyTransparentColor: "#CBFF004D",
-    inputFieldColor: "#101B26",
-    secondaryLabelColor: "#9DADBC",
-    switcherLoaderColor: "#0087FF"
+    containerBackgroundColor: '#09141F',
+    menuColor: '#172A3B',
+    subMenuColor: '#152534',
+    contextMenuColor: '#161716',
+    secondaryContainerBackgroundColor: '#2E4458',
+    messageColor: '#3D5469',
+    inactiveBackgroundColor: '#BFCDD9',
+    themeGradientColors: ['#152534', '#09141F'],
+    themeSecondaryGradientColors: ['#223445', '#152534'],
+    buttonWrapperGradientColors: ['#2E4458', '#0D1824'],
+    accentGradientColors: ['#CBFF00', '#7BAB00'],
+    accentColor: '#CBFF00',
+    accentSlightlyTransparentColor: '#CBFF0099',
+    accentStronglyTransparentColor: '#CBFF004D',
+    inputFieldColor: '#101B26',
+    secondaryLabelColor: '#9DADBC',
+    switcherLoaderColor: '#0087FF'
   },
   dynamicIcons: {
     favicon: favicon,
@@ -75,28 +75,28 @@ const DEFAULT_STYLES_CONF = {
     logo: vCloudAi_symbol_logo
   },
   font: '"Montserrat"',
-  title: "vCloud.ai bridge"
+  title: 'vCloud.ai bridge'
 }; // CONFIGURE AND BUILD WITH CUSTOM BRANDING
 
 const CUSTOM_STYLES_CONF = {
   colors: {
-    containerBackgroundColor: "#002950",
-    menuColor: "#004F7A",
-    subMenuColor: "#035270",
-    contextMenuColor: "#002349",
-    secondaryContainerBackgroundColor: "#006C9A",
-    messageColor: "#0580AF",
-    inactiveBackgroundColor: "#BFCDD9",
-    themeGradientColors: ["#035270", "#002950"],
-    themeSecondaryGradientColors: ["#006794", "#035270"],
-    buttonWrapperGradientColors: ["#006C9A", "#002A3A"],
-    accentGradientColors: ["#FF8500", "#B35D00"],
-    accentColor: "#FF8500",
-    accentSlightlyTransparentColor: "#FF850099",
-    accentStronglyTransparentColor: "#FF85004D",
-    inputFieldColor: "#003861",
-    secondaryLabelColor: "#9DADBC",
-    switcherLoaderColor: "#FF8500"
+    containerBackgroundColor: '#002950',
+    menuColor: '#004F7A',
+    subMenuColor: '#035270',
+    contextMenuColor: '#002349',
+    secondaryContainerBackgroundColor: '#006C9A',
+    messageColor: '#0580AF',
+    inactiveBackgroundColor: '#BFCDD9',
+    themeGradientColors: ['#035270', '#002950'],
+    themeSecondaryGradientColors: ['#006794', '#035270'],
+    buttonWrapperGradientColors: ['#006C9A', '#002A3A'],
+    accentGradientColors: ['#FF8500', '#B35D00'],
+    accentColor: '#FF8500',
+    accentSlightlyTransparentColor: '#FF850099',
+    accentStronglyTransparentColor: '#FF85004D',
+    inputFieldColor: '#003861',
+    secondaryLabelColor: '#9DADBC',
+    switcherLoaderColor: '#FF8500'
   },
   dynamicIcons: {
     favicon: logo,
@@ -104,7 +104,7 @@ const CUSTOM_STYLES_CONF = {
     logo: olsek_badge
   },
   font: '"Questrial"',
-  title: "OLSEK VSS AI bridge"
+  title: 'OLSEK VSS AI bridge'
 };
 
 const commonStyles = _objectSpread(_objectSpread(_objectSpread({}, DEFAULT_STYLES_CONF), CUSTOM_STYLES_CONF), {}, {

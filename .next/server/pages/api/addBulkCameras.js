@@ -26,6 +26,13 @@ module.exports = require("jsonwebtoken");
 
 /***/ }),
 
+/***/ 2245:
+/***/ ((module) => {
+
+module.exports = require("moment");
+
+/***/ }),
+
 /***/ 6689:
 /***/ ((module) => {
 

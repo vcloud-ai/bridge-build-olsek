@@ -11,6 +11,8 @@ const {
   spawn
 } = __webpack_require__(2081);
 
+const moment = __webpack_require__(2245);
+
 const terminate = __webpack_require__(7987);
 
 const {
@@ -61,20 +63,22 @@ class Streamer {
 
     const ffmpegVersion = process.env.FFMPEG_VERSION || 4;
     console.log({
-      ffmpegVersion: +ffmpegVersion
+      ffmpegVersion: +ffmpegVersion,
+      originalUrl: this.streamUrl,
+      url: this.info.proxyUrl,
+      timestamp: moment().format('YYYY/MM/DD HH:mm:ss')
     });
-    const timeoutOpt = +ffmpegVersion < 5 ? "-stimeout" : "-timeout";
-    const cmd = ["-rtsp_transport", "tcp", timeoutOpt, // used for ffmpeg v4. use -timeout for v5
-    "10000000", "-i", unescape(this.streamUrl), "-threads", "1", "-max_delay", "5000000", "-loglevel", "error", "-r", "15", "-c", "copy", "-f", "rtsp", this.info.proxyUrl];
-    this.streamProcess = spawn("ffmpeg", cmd);
-    this.streamProcess.stderr.on("data", data => {
+    const timeoutOpt = +ffmpegVersion < 5 ? '-stimeout' : '-timeout';
+    const cmd = ['-rtsp_transport', 'tcp', timeoutOpt, '10000000', '-loglevel', 'error', '-i', unescape(this.streamUrl), '-c', 'copy', '-f', 'rtsp', this.info.proxyUrl];
+    this.streamProcess = spawn('ffmpeg', cmd);
+    this.streamProcess.stderr.on('data', data => {
       console.log(`camera id ====> ${this.info.id}`);
-      console.log(data.toString("utf8"));
+      console.log(data.toString('utf8'));
     });
-    this.streamProcess.stdout.on("data", data => {// console.log(`camera id ====> ${this.info.id}`);
+    this.streamProcess.stdout.on('data', data => {// console.log(`camera id ====> ${this.info.id}`);
       // console.log(data.toString("utf8"));
     });
-    this.streamProcess.on("close", () => {
+    this.streamProcess.on('close', () => {
       if (this.isStopped) return;
       this.restartTimeout = setTimeout(this.init.bind(this), 15000);
     });

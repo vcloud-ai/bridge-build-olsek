@@ -5,6 +5,13 @@ exports.id = 965;
 exports.ids = [965];
 exports.modules = {
 
+/***/ 2245:
+/***/ ((module) => {
+
+module.exports = require("moment");
+
+/***/ }),
+
 /***/ 7987:
 /***/ ((module) => {
 
